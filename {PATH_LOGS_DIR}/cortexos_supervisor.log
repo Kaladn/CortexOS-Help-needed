@@ -1,0 +1,164 @@
+2025-06-09 06:57:43,304 - phase1.vectorizer - WARNING - Fallback chains file not found: c:\Users\Blame\Desktop\cortexos_rebuilt\phase1\..\data\fallback_chains.json
+2025-06-09 06:57:43,305 - phase1.vectorizer - INFO - CortexVectorizer initialized with 10 dimensions
+2025-06-09 06:57:43,310 - phase1.phase_harmonics - WARNING - Fallback chains file not found: c:\Users\Blame\Desktop\cortexos_rebuilt\phase1\..\data\fallback_chains.json
+2025-06-09 06:57:43,310 - phase1.phase_harmonics - INFO - PhaseHarmonics initialized with base frequency: 1.00
+2025-06-09 07:00:33,041 - phase1.vectorizer - WARNING - Fallback chains file not found: c:\Users\Blame\Desktop\cortexos_rebuilt\phase1\..\data\fallback_chains.json
+2025-06-09 07:00:33,042 - phase1.vectorizer - INFO - CortexVectorizer initialized with 10 dimensions
+2025-06-09 07:00:33,047 - phase1.phase_harmonics - WARNING - Fallback chains file not found: c:\Users\Blame\Desktop\cortexos_rebuilt\phase1\..\data\fallback_chains.json
+2025-06-09 07:00:33,048 - phase1.phase_harmonics - INFO - PhaseHarmonics initialized with base frequency: 1.00
+2025-06-09 07:02:57,706 - phase1.vectorizer - WARNING - Fallback chains file not found: c:\Users\Blame\Desktop\cortexos_rebuilt\phase1\..\data\fallback_chains.json
+2025-06-09 07:02:57,707 - phase1.vectorizer - INFO - CortexVectorizer initialized with 10 dimensions
+2025-06-09 07:02:57,713 - phase1.phase_harmonics - WARNING - Fallback chains file not found: c:\Users\Blame\Desktop\cortexos_rebuilt\phase1\..\data\fallback_chains.json
+2025-06-09 07:02:57,713 - phase1.phase_harmonics - INFO - PhaseHarmonics initialized with base frequency: 1.00
+2025-06-09 07:05:37,961 - phase1.vectorizer - WARNING - Fallback chains file not found: c:\Users\Blame\Desktop\cortexos_rebuilt\phase1\..\data\fallback_chains.json
+2025-06-09 07:05:37,961 - phase1.vectorizer - INFO - CortexVectorizer initialized with 10 dimensions
+2025-06-09 07:05:37,967 - phase1.phase_harmonics - WARNING - Fallback chains file not found: c:\Users\Blame\Desktop\cortexos_rebuilt\phase1\..\data\fallback_chains.json
+2025-06-09 07:05:37,967 - phase1.phase_harmonics - INFO - PhaseHarmonics initialized with base frequency: 1.00
+2025-06-09 07:08:24,425 - phase1.vectorizer - WARNING - Fallback chains file not found: c:\Users\Blame\Desktop\cortexos_rebuilt\phase1\..\data\fallback_chains.json
+2025-06-09 07:08:24,426 - phase1.vectorizer - INFO - CortexVectorizer initialized with 10 dimensions
+2025-06-09 07:08:24,431 - phase1.phase_harmonics - WARNING - Fallback chains file not found: c:\Users\Blame\Desktop\cortexos_rebuilt\phase1\..\data\fallback_chains.json
+2025-06-09 07:08:24,431 - phase1.phase_harmonics - INFO - PhaseHarmonics initialized with base frequency: 1.00
+2025-06-09 07:08:24,452 - phase1.phase_harmonics - WARNING - Fallback chains file not found: c:\Users\Blame\Desktop\cortexos_rebuilt\phase1\..\data\fallback_chains.json
+2025-06-09 07:08:24,452 - phase1.phase_harmonics - INFO - PhaseHarmonics initialized with base frequency: 1.00
+2025-06-09 07:09:03,685 - phase1.vectorizer - WARNING - Fallback chains file not found: c:\Users\Blame\Desktop\cortexos_rebuilt\phase1\..\data\fallback_chains.json
+2025-06-09 07:09:03,685 - phase1.vectorizer - INFO - CortexVectorizer initialized with 10 dimensions
+2025-06-09 07:09:03,690 - phase1.phase_harmonics - WARNING - Fallback chains file not found: c:\Users\Blame\Desktop\cortexos_rebuilt\phase1\..\data\fallback_chains.json
+2025-06-09 07:09:03,690 - phase1.phase_harmonics - INFO - PhaseHarmonics initialized with base frequency: 1.00
+2025-06-09 07:09:03,697 - phase1.phase_harmonics - WARNING - Fallback chains file not found: c:\Users\Blame\Desktop\cortexos_rebuilt\phase1\..\data\fallback_chains.json
+2025-06-09 07:09:03,697 - phase1.phase_harmonics - INFO - PhaseHarmonics initialized with base frequency: 1.00
+2025-06-09 07:14:18,011 - phase1.vectorizer - WARNING - Fallback chains file not found: c:\Users\Blame\Desktop\cortexos_rebuilt\phase1\..\data\fallback_chains.json
+2025-06-09 07:14:18,011 - phase1.vectorizer - INFO - CortexVectorizer initialized with 10 dimensions
+2025-06-09 07:14:18,015 - phase1.phase_harmonics - WARNING - Fallback chains file not found: c:\Users\Blame\Desktop\cortexos_rebuilt\phase1\..\data\fallback_chains.json
+2025-06-09 07:14:18,015 - phase1.phase_harmonics - INFO - PhaseHarmonics initialized with base frequency: 1.00
+2025-06-09 07:14:18,023 - phase1.phase_harmonics - WARNING - Fallback chains file not found: c:\Users\Blame\Desktop\cortexos_rebuilt\phase1\..\data\fallback_chains.json
+2025-06-09 07:14:18,023 - phase1.phase_harmonics - INFO - PhaseHarmonics initialized with base frequency: 1.00
+2025-06-09 09:35:20,942 - CortexOS.ContractManager - ERROR - Failed to load contracts: [Errno 13] Permission denied: 'C:/Users/Blame/Desktop/cortexos_rebuilt/Cortex_Temp/contracts.json'
+2025-06-09 09:35:20,946 - phase1.vectorizer - WARNING - Fallback chains file not found: c:\Users\Blame\Desktop\cortexos_rebuilt\phase1\..\data\fallback_chains.json
+2025-06-09 09:35:20,946 - phase1.vectorizer - INFO - CortexVectorizer initialized with 10 dimensions
+2025-06-09 09:35:20,953 - phase1.phase_harmonics - WARNING - Fallback chains file not found: c:\Users\Blame\Desktop\cortexos_rebuilt\phase1\..\data\fallback_chains.json
+2025-06-09 09:35:20,953 - phase1.phase_harmonics - INFO - PhaseHarmonics initialized with base frequency: 1.00
+2025-06-09 09:35:20,962 - phase1.phase_harmonics - WARNING - Fallback chains file not found: c:\Users\Blame\Desktop\cortexos_rebuilt\phase1\..\data\fallback_chains.json
+2025-06-09 09:35:20,962 - phase1.phase_harmonics - INFO - PhaseHarmonics initialized with base frequency: 1.00
+2025-06-09 09:36:26,729 - CortexOS.ContractManager - ERROR - Failed to load contracts: [Errno 13] Permission denied: 'C:/Users/Blame/Desktop/cortexos_rebuilt/Cortex_Temp/contracts.json'
+2025-06-09 09:36:26,733 - phase1.vectorizer - WARNING - Fallback chains file not found: c:\Users\Blame\Desktop\cortexos_rebuilt\phase1\..\data\fallback_chains.json
+2025-06-09 09:36:26,733 - phase1.vectorizer - INFO - CortexVectorizer initialized with 10 dimensions
+2025-06-09 09:36:26,737 - phase1.phase_harmonics - WARNING - Fallback chains file not found: c:\Users\Blame\Desktop\cortexos_rebuilt\phase1\..\data\fallback_chains.json
+2025-06-09 09:36:26,737 - phase1.phase_harmonics - INFO - PhaseHarmonics initialized with base frequency: 1.00
+2025-06-09 09:36:26,745 - phase1.phase_harmonics - WARNING - Fallback chains file not found: c:\Users\Blame\Desktop\cortexos_rebuilt\phase1\..\data\fallback_chains.json
+2025-06-09 09:36:26,745 - phase1.phase_harmonics - INFO - PhaseHarmonics initialized with base frequency: 1.00
+2025-06-09 09:37:59,102 - CortexOS.ContractManager - ERROR - Failed to load contracts: [Errno 13] Permission denied: 'C:/Users/Blame/Desktop/cortexos_rebuilt/Cortex_Temp/contracts.json'
+2025-06-09 09:37:59,106 - phase1.vectorizer - WARNING - Fallback chains file not found: c:\Users\Blame\Desktop\cortexos_rebuilt\phase1\..\data\fallback_chains.json
+2025-06-09 09:37:59,106 - phase1.vectorizer - INFO - CortexVectorizer initialized with 10 dimensions
+2025-06-09 09:37:59,111 - phase1.phase_harmonics - WARNING - Fallback chains file not found: c:\Users\Blame\Desktop\cortexos_rebuilt\phase1\..\data\fallback_chains.json
+2025-06-09 09:37:59,111 - phase1.phase_harmonics - INFO - PhaseHarmonics initialized with base frequency: 1.00
+2025-06-09 09:37:59,118 - phase1.phase_harmonics - WARNING - Fallback chains file not found: c:\Users\Blame\Desktop\cortexos_rebuilt\phase1\..\data\fallback_chains.json
+2025-06-09 09:37:59,118 - phase1.phase_harmonics - INFO - PhaseHarmonics initialized with base frequency: 1.00
+2025-06-09 09:38:13,770 - CortexOS.ContractManager - ERROR - Failed to load contracts: [Errno 13] Permission denied: 'C:/Users/Blame/Desktop/cortexos_rebuilt/Cortex_Temp/contracts.json'
+2025-06-09 09:38:13,775 - phase1.vectorizer - WARNING - Fallback chains file not found: c:\Users\Blame\Desktop\cortexos_rebuilt\phase1\..\data\fallback_chains.json
+2025-06-09 09:38:13,775 - phase1.vectorizer - INFO - CortexVectorizer initialized with 10 dimensions
+2025-06-09 09:38:13,779 - phase1.phase_harmonics - WARNING - Fallback chains file not found: c:\Users\Blame\Desktop\cortexos_rebuilt\phase1\..\data\fallback_chains.json
+2025-06-09 09:38:13,779 - phase1.phase_harmonics - INFO - PhaseHarmonics initialized with base frequency: 1.00
+2025-06-09 09:38:13,785 - phase1.phase_harmonics - WARNING - Fallback chains file not found: c:\Users\Blame\Desktop\cortexos_rebuilt\phase1\..\data\fallback_chains.json
+2025-06-09 09:38:13,785 - phase1.phase_harmonics - INFO - PhaseHarmonics initialized with base frequency: 1.00
+2025-06-09 10:14:58,673 - CortexOS.ContractManager - ERROR - Failed to load contracts: [Errno 13] Permission denied: 'C:/Users/Blame/Desktop/cortexos_rebuilt/Cortex_Temp/contracts.json'
+2025-06-09 10:14:58,677 - phase1.vectorizer - WARNING - Fallback chains file not found: c:\Users\Blame\Desktop\cortexos_rebuilt\phase1\..\data\fallback_chains.json
+2025-06-09 10:14:58,677 - phase1.vectorizer - INFO - CortexVectorizer initialized with 10 dimensions
+2025-06-09 10:14:58,683 - phase1.phase_harmonics - WARNING - Fallback chains file not found: c:\Users\Blame\Desktop\cortexos_rebuilt\phase1\..\data\fallback_chains.json
+2025-06-09 10:14:58,683 - phase1.phase_harmonics - INFO - PhaseHarmonics initialized with base frequency: 1.00
+2025-06-09 10:14:58,688 - phase1.phase_harmonics - WARNING - Fallback chains file not found: c:\Users\Blame\Desktop\cortexos_rebuilt\phase1\..\data\fallback_chains.json
+2025-06-09 10:14:58,688 - phase1.phase_harmonics - INFO - PhaseHarmonics initialized with base frequency: 1.00
+2025-06-09 10:16:04,092 - CortexOS.ContractManager - ERROR - Failed to load contracts: [Errno 13] Permission denied: 'C:/Users/Blame/Desktop/cortexos_rebuilt/Cortex_Temp/contracts.json'
+2025-06-09 10:16:04,096 - phase1.vectorizer - WARNING - Fallback chains file not found: c:\Users\Blame\Desktop\cortexos_rebuilt\phase1\..\data\fallback_chains.json
+2025-06-09 10:16:04,096 - phase1.vectorizer - INFO - CortexVectorizer initialized with 10 dimensions
+2025-06-09 10:16:04,101 - phase1.phase_harmonics - WARNING - Fallback chains file not found: c:\Users\Blame\Desktop\cortexos_rebuilt\phase1\..\data\fallback_chains.json
+2025-06-09 10:16:04,101 - phase1.phase_harmonics - INFO - PhaseHarmonics initialized with base frequency: 1.00
+2025-06-09 10:16:04,109 - phase1.phase_harmonics - WARNING - Fallback chains file not found: c:\Users\Blame\Desktop\cortexos_rebuilt\phase1\..\data\fallback_chains.json
+2025-06-09 10:16:04,109 - phase1.phase_harmonics - INFO - PhaseHarmonics initialized with base frequency: 1.00
+2025-06-09 10:23:15,269 - CortexOS.ContractManager - ERROR - Failed to load contracts: [Errno 13] Permission denied: 'C:/Users/Blame/Desktop/cortexos_rebuilt/Cortex_Temp/contracts.json'
+2025-06-09 10:23:15,269 - infrastructure.sync_manager - INFO - AdvancedSyncManager initialized.
+2025-06-09 10:23:15,273 - phase1.vectorizer - WARNING - Fallback chains file not found: c:\Users\Blame\Desktop\cortexos_rebuilt\phase1\..\data\fallback_chains.json
+2025-06-09 10:23:15,273 - phase1.vectorizer - INFO - CortexVectorizer initialized with 10 dimensions
+2025-06-09 10:23:15,278 - phase1.phase_harmonics - WARNING - Fallback chains file not found: c:\Users\Blame\Desktop\cortexos_rebuilt\phase1\..\data\fallback_chains.json
+2025-06-09 10:23:15,278 - phase1.phase_harmonics - INFO - PhaseHarmonics initialized with base frequency: 1.00
+2025-06-09 10:23:15,286 - phase1.phase_harmonics - WARNING - Fallback chains file not found: c:\Users\Blame\Desktop\cortexos_rebuilt\phase1\..\data\fallback_chains.json
+2025-06-09 10:23:15,286 - phase1.phase_harmonics - INFO - PhaseHarmonics initialized with base frequency: 1.00
+2025-06-09 10:23:15,287 - infrastructure.sync_manager - INFO - AdvancedSyncManager initialized.
+2025-06-09 10:23:15,287 - phase2.swarm_resonance - INFO - SwarmResonance initialized with Agharmonic Law compliance
+2025-06-09 10:24:28,989 - CortexOS.ContractManager - ERROR - Failed to load contracts: [Errno 13] Permission denied: 'C:/Users/Blame/Desktop/cortexos_rebuilt/Cortex_Temp/contracts.json'
+2025-06-09 10:24:28,989 - infrastructure.sync_manager - INFO - AdvancedSyncManager initialized.
+2025-06-09 10:24:28,993 - phase1.vectorizer - WARNING - Fallback chains file not found: c:\Users\Blame\Desktop\cortexos_rebuilt\phase1\..\data\fallback_chains.json
+2025-06-09 10:24:28,993 - phase1.vectorizer - INFO - CortexVectorizer initialized with 10 dimensions
+2025-06-09 10:24:28,999 - phase1.phase_harmonics - WARNING - Fallback chains file not found: c:\Users\Blame\Desktop\cortexos_rebuilt\phase1\..\data\fallback_chains.json
+2025-06-09 10:24:29,000 - phase1.phase_harmonics - INFO - PhaseHarmonics initialized with base frequency: 1.00
+2025-06-09 10:24:29,007 - phase1.phase_harmonics - WARNING - Fallback chains file not found: c:\Users\Blame\Desktop\cortexos_rebuilt\phase1\..\data\fallback_chains.json
+2025-06-09 10:24:29,007 - phase1.phase_harmonics - INFO - PhaseHarmonics initialized with base frequency: 1.00
+2025-06-09 10:24:29,007 - infrastructure.sync_manager - INFO - AdvancedSyncManager initialized.
+2025-06-09 10:24:29,007 - phase2.swarm_resonance - INFO - SwarmResonance initialized with Agharmonic Law compliance
+2025-06-09 10:25:32,660 - CortexOS.ContractManager - ERROR - Failed to load contracts: [Errno 13] Permission denied: 'C:/Users/Blame/Desktop/cortexos_rebuilt/Cortex_Temp/contracts.json'
+2025-06-09 10:25:32,660 - infrastructure.sync_manager - INFO - AdvancedSyncManager initialized.
+2025-06-09 10:25:32,664 - phase1.vectorizer - WARNING - Fallback chains file not found: c:\Users\Blame\Desktop\cortexos_rebuilt\phase1\..\data\fallback_chains.json
+2025-06-09 10:25:32,664 - phase1.vectorizer - INFO - CortexVectorizer initialized with 10 dimensions
+2025-06-09 10:25:32,670 - phase1.phase_harmonics - WARNING - Fallback chains file not found: c:\Users\Blame\Desktop\cortexos_rebuilt\phase1\..\data\fallback_chains.json
+2025-06-09 10:25:32,670 - phase1.phase_harmonics - INFO - PhaseHarmonics initialized with base frequency: 1.00
+2025-06-09 10:25:32,677 - phase1.phase_harmonics - WARNING - Fallback chains file not found: c:\Users\Blame\Desktop\cortexos_rebuilt\phase1\..\data\fallback_chains.json
+2025-06-09 10:25:32,677 - phase1.phase_harmonics - INFO - PhaseHarmonics initialized with base frequency: 1.00
+2025-06-09 10:25:32,677 - infrastructure.sync_manager - INFO - AdvancedSyncManager initialized.
+2025-06-09 10:25:32,678 - phase2.swarm_resonance - INFO - SwarmResonance initialized with Agharmonic Law compliance
+2025-06-09 10:29:28,297 - CortexOS.ContractManager - ERROR - Failed to load contracts: [Errno 13] Permission denied: 'C:/Users/Blame/Desktop/cortexos_rebuilt/Cortex_Temp/contracts.json'
+2025-06-09 10:29:28,297 - infrastructure.sync_manager - INFO - AdvancedSyncManager initialized.
+2025-06-09 10:29:28,301 - phase1.vectorizer - WARNING - Fallback chains file not found: c:\Users\Blame\Desktop\cortexos_rebuilt\phase1\..\data\fallback_chains.json
+2025-06-09 10:29:28,301 - phase1.vectorizer - INFO - CortexVectorizer initialized with 10 dimensions
+2025-06-09 10:29:28,306 - phase1.phase_harmonics - WARNING - Fallback chains file not found: c:\Users\Blame\Desktop\cortexos_rebuilt\phase1\..\data\fallback_chains.json
+2025-06-09 10:29:28,306 - phase1.phase_harmonics - INFO - PhaseHarmonics initialized with base frequency: 1.00
+2025-06-09 10:29:28,313 - phase1.phase_harmonics - WARNING - Fallback chains file not found: c:\Users\Blame\Desktop\cortexos_rebuilt\phase1\..\data\fallback_chains.json
+2025-06-09 10:29:28,313 - phase1.phase_harmonics - INFO - PhaseHarmonics initialized with base frequency: 1.00
+2025-06-09 10:29:28,313 - infrastructure.sync_manager - INFO - AdvancedSyncManager initialized.
+2025-06-09 10:29:28,313 - phase2.swarm_resonance - INFO - SwarmResonance initialized with Agharmonic Law compliance
+2025-06-09 10:33:55,347 - CortexOS.ContractManager - ERROR - Failed to load contracts: [Errno 13] Permission denied: 'C:/Users/Blame/Desktop/cortexos_rebuilt/Cortex_Temp/contracts.json'
+2025-06-09 10:33:55,347 - infrastructure.sync_manager - INFO - AdvancedSyncManager initialized.
+2025-06-09 10:33:55,351 - phase1.vectorizer - WARNING - Fallback chains file not found: c:\Users\Blame\Desktop\cortexos_rebuilt\phase1\..\data\fallback_chains.json
+2025-06-09 10:33:55,351 - phase1.vectorizer - INFO - CortexVectorizer initialized with 10 dimensions
+2025-06-09 10:33:55,356 - phase1.phase_harmonics - WARNING - Fallback chains file not found: c:\Users\Blame\Desktop\cortexos_rebuilt\phase1\..\data\fallback_chains.json
+2025-06-09 10:33:55,356 - phase1.phase_harmonics - INFO - PhaseHarmonics initialized with base frequency: 1.00
+2025-06-09 10:33:55,364 - phase1.phase_harmonics - WARNING - Fallback chains file not found: c:\Users\Blame\Desktop\cortexos_rebuilt\phase1\..\data\fallback_chains.json
+2025-06-09 10:33:55,364 - phase1.phase_harmonics - INFO - PhaseHarmonics initialized with base frequency: 1.00
+2025-06-09 10:33:55,364 - infrastructure.sync_manager - INFO - AdvancedSyncManager initialized.
+2025-06-09 10:33:55,364 - phase2.swarm_resonance - INFO - SwarmResonance initialized with Agharmonic Law compliance
+2025-06-09 10:34:03,927 - CortexOS.ContractManager - ERROR - Failed to load contracts: [Errno 13] Permission denied: 'C:/Users/Blame/Desktop/cortexos_rebuilt/Cortex_Temp/contracts.json'
+2025-06-09 10:34:03,928 - infrastructure.sync_manager - INFO - AdvancedSyncManager initialized.
+2025-06-09 10:34:03,932 - phase1.vectorizer - WARNING - Fallback chains file not found: c:\Users\Blame\Desktop\cortexos_rebuilt\phase1\..\data\fallback_chains.json
+2025-06-09 10:34:03,932 - phase1.vectorizer - INFO - CortexVectorizer initialized with 10 dimensions
+2025-06-09 10:34:03,936 - phase1.phase_harmonics - WARNING - Fallback chains file not found: c:\Users\Blame\Desktop\cortexos_rebuilt\phase1\..\data\fallback_chains.json
+2025-06-09 10:34:03,936 - phase1.phase_harmonics - INFO - PhaseHarmonics initialized with base frequency: 1.00
+2025-06-09 10:34:03,946 - phase1.phase_harmonics - WARNING - Fallback chains file not found: c:\Users\Blame\Desktop\cortexos_rebuilt\phase1\..\data\fallback_chains.json
+2025-06-09 10:34:03,946 - phase1.phase_harmonics - INFO - PhaseHarmonics initialized with base frequency: 1.00
+2025-06-09 10:34:03,946 - infrastructure.sync_manager - INFO - AdvancedSyncManager initialized.
+2025-06-09 10:34:03,946 - phase2.swarm_resonance - INFO - SwarmResonance initialized with Agharmonic Law compliance
+2025-06-09 10:38:01,865 - CortexOS.ContractManager - ERROR - Failed to load contracts: [Errno 13] Permission denied: 'C:/Users/Blame/Desktop/cortexos_rebuilt/Cortex_Temp/contracts.json'
+2025-06-09 10:38:01,865 - infrastructure.sync_manager - INFO - AdvancedSyncManager initialized.
+2025-06-09 10:38:01,869 - phase1.vectorizer - WARNING - Fallback chains file not found: c:\Users\Blame\Desktop\cortexos_rebuilt\phase1\..\data\fallback_chains.json
+2025-06-09 10:38:01,869 - phase1.vectorizer - INFO - CortexVectorizer initialized with 10 dimensions
+2025-06-09 10:38:01,874 - phase1.phase_harmonics - WARNING - Fallback chains file not found: c:\Users\Blame\Desktop\cortexos_rebuilt\phase1\..\data\fallback_chains.json
+2025-06-09 10:38:01,874 - phase1.phase_harmonics - INFO - PhaseHarmonics initialized with base frequency: 1.00
+2025-06-09 10:38:01,882 - phase1.phase_harmonics - WARNING - Fallback chains file not found: c:\Users\Blame\Desktop\cortexos_rebuilt\phase1\..\data\fallback_chains.json
+2025-06-09 10:38:01,882 - phase1.phase_harmonics - INFO - PhaseHarmonics initialized with base frequency: 1.00
+2025-06-09 10:38:01,882 - infrastructure.sync_manager - INFO - AdvancedSyncManager initialized.
+2025-06-09 10:38:01,882 - phase2.swarm_resonance - INFO - SwarmResonance initialized with Agharmonic Law compliance
+2025-06-09 10:40:44,376 - CortexOS.ContractManager - ERROR - Failed to load contracts: [Errno 13] Permission denied: 'C:/Users/Blame/Desktop/cortexos_rebuilt/Cortex_Temp/contracts.json'
+2025-06-09 10:40:44,376 - infrastructure.sync_manager - INFO - AdvancedSyncManager initialized.
+2025-06-09 10:40:44,380 - phase1.vectorizer - WARNING - Fallback chains file not found: c:\Users\Blame\Desktop\cortexos_rebuilt\phase1\..\data\fallback_chains.json
+2025-06-09 10:40:44,381 - phase1.vectorizer - INFO - CortexVectorizer initialized with 10 dimensions
+2025-06-09 10:40:44,387 - phase1.phase_harmonics - WARNING - Fallback chains file not found: c:\Users\Blame\Desktop\cortexos_rebuilt\phase1\..\data\fallback_chains.json
+2025-06-09 10:40:44,387 - phase1.phase_harmonics - INFO - PhaseHarmonics initialized with base frequency: 1.00
+2025-06-09 10:50:36,266 - CortexOS.ContractManager - ERROR - Failed to load contracts: [Errno 13] Permission denied: 'C:/Users/Blame/Desktop/cortexos_rebuilt/Cortex_Temp/contracts.json'
+2025-06-09 10:50:36,266 - infrastructure.sync_manager - INFO - AdvancedSyncManager initialized.
+2025-06-09 10:50:36,270 - phase1.vectorizer - WARNING - Fallback chains file not found: c:\Users\Blame\Desktop\cortexos_rebuilt\phase1\..\data\fallback_chains.json
+2025-06-09 10:50:36,270 - phase1.vectorizer - INFO - CortexVectorizer initialized with 10 dimensions
+2025-06-09 10:50:36,275 - phase1.phase_harmonics - WARNING - Fallback chains file not found: c:\Users\Blame\Desktop\cortexos_rebuilt\phase1\..\data\fallback_chains.json
+2025-06-09 10:50:36,275 - phase1.phase_harmonics - INFO - PhaseHarmonics initialized with base frequency: 1.00
+2025-06-09 10:57:32,407 - CortexOS.ContractManager - ERROR - Failed to load contracts: [Errno 13] Permission denied: 'C:/Users/Blame/Desktop/cortexos_rebuilt/Cortex_Temp/contracts.json'
+2025-06-09 10:57:32,408 - infrastructure.sync_manager - INFO - AdvancedSyncManager initialized.
+2025-06-09 10:57:32,412 - phase1.vectorizer - WARNING - Fallback chains file not found: c:\Users\Blame\Desktop\cortexos_rebuilt\phase1\..\data\fallback_chains.json
+2025-06-09 10:57:32,412 - phase1.vectorizer - INFO - CortexVectorizer initialized with 10 dimensions
+2025-06-09 10:57:32,416 - phase1.phase_harmonics - WARNING - Fallback chains file not found: c:\Users\Blame\Desktop\cortexos_rebuilt\phase1\..\data\fallback_chains.json
+2025-06-09 10:57:32,416 - phase1.phase_harmonics - INFO - PhaseHarmonics initialized with base frequency: 1.00

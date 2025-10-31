@@ -1,0 +1,211 @@
+[
+  {
+    "contract_id": "contract_06d54df4_1749475915",
+    "client_id": "client_0",
+    "service_type": "neural_processing",
+    "resource_requirements": [
+      {
+        "resource_type": "ResourceType.CUBE",
+        "quantity": 5,
+        "duration": 3600.0,
+        "constraints": {}
+      },
+      {
+        "resource_type": "ResourceType.NEURAL_PROCESSOR",
+        "quantity": 2,
+        "duration": 3600.0,
+        "constraints": {}
+      },
+      {
+        "resource_type": "ResourceType.MEMORY_BANK",
+        "quantity": 10,
+        "duration": 3600.0,
+        "constraints": {}
+      }
+    ],
+    "sla_requirements": {
+      "max_latency": 0.5,
+      "min_throughput": 10.0,
+      "max_error_rate": 0.005,
+      "availability": 0.995,
+      "response_time": 0.1
+    },
+    "priority": "Priority.NORMAL",
+    "status": "ContractStatus.COMPLETED",
+    "created_time": 1749475915.821559,
+    "start_time": 1749475915.8231347,
+    "end_time": 1749475915.8231347,
+    "allocated_resources": {},
+    "execution_history": [
+      {
+        "timestamp": 1749475915.8231347,
+        "event": "resources_allocated",
+        "resources": {}
+      },
+      {
+        "timestamp": 1749475915.8231347,
+        "event": "resources_allocated",
+        "resources": {}
+      },
+      {
+        "timestamp": 1749475915.8231347,
+        "event": "status_change",
+        "old_status": "pending",
+        "new_status": "active",
+        "metadata": {}
+      },
+      {
+        "timestamp": 1749475915.8231347,
+        "event": "status_change",
+        "old_status": "active",
+        "new_status": "completed",
+        "metadata": {
+          "execution_result": {
+            "success": true
+          }
+        }
+      }
+    ],
+    "metadata": {
+      "test_id": 0,
+      "description": "Test contract 0",
+      "execution_result": {
+        "success": true
+      }
+    }
+  },
+  {
+    "contract_id": "contract_172779c1_1749475915",
+    "client_id": "client_1",
+    "service_type": "neural_processing",
+    "resource_requirements": [
+      {
+        "resource_type": "ResourceType.CUBE",
+        "quantity": 5,
+        "duration": 3600.0,
+        "constraints": {}
+      },
+      {
+        "resource_type": "ResourceType.NEURAL_PROCESSOR",
+        "quantity": 2,
+        "duration": 3600.0,
+        "constraints": {}
+      },
+      {
+        "resource_type": "ResourceType.MEMORY_BANK",
+        "quantity": 10,
+        "duration": 3600.0,
+        "constraints": {}
+      }
+    ],
+    "sla_requirements": {
+      "max_latency": 0.5,
+      "min_throughput": 10.0,
+      "max_error_rate": 0.005,
+      "availability": 0.995,
+      "response_time": 0.1
+    },
+    "priority": "Priority.NORMAL",
+    "status": "ContractStatus.COMPLETED",
+    "created_time": 1749475915.8231347,
+    "start_time": 1749475915.8231347,
+    "end_time": 1749475915.8231347,
+    "allocated_resources": {},
+    "execution_history": [
+      {
+        "timestamp": 1749475915.8231347,
+        "event": "resources_allocated",
+        "resources": {}
+      },
+      {
+        "timestamp": 1749475915.8231347,
+        "event": "resources_allocated",
+        "resources": {}
+      },
+      {
+        "timestamp": 1749475915.8231347,
+        "event": "status_change",
+        "old_status": "pending",
+        "new_status": "active",
+        "metadata": {}
+      },
+      {
+        "timestamp": 1749475915.8231347,
+        "event": "status_change",
+        "old_status": "active",
+        "new_status": "completed",
+        "metadata": {
+          "execution_result": {
+            "success": true
+          }
+        }
+      }
+    ],
+    "metadata": {
+      "test_id": 1,
+      "description": "Test contract 1",
+      "execution_result": {
+        "success": true
+      }
+    }
+  },
+  {
+    "contract_id": "contract_18920a31_1749475915",
+    "client_id": "client_2",
+    "service_type": "neural_processing",
+    "resource_requirements": [
+      {
+        "resource_type": "ResourceType.CUBE",
+        "quantity": 5,
+        "duration": 3600.0,
+        "constraints": {}
+      },
+      {
+        "resource_type": "ResourceType.NEURAL_PROCESSOR",
+        "quantity": 2,
+        "duration": 3600.0,
+        "constraints": {}
+      },
+      {
+        "resource_type": "ResourceType.MEMORY_BANK",
+        "quantity": 10,
+        "duration": 3600.0,
+        "constraints": {}
+      }
+    ],
+    "sla_requirements": {
+      "max_latency": 0.5,
+      "min_throughput": 10.0,
+      "max_error_rate": 0.005,
+      "availability": 0.995,
+      "response_time": 0.1
+    },
+    "priority": "Priority.NORMAL",
+    "status": "ContractStatus.CANCELLED",
+    "created_time": 1749475915.8231347,
+    "start_time": null,
+    "end_time": 1749475915.8231347,
+    "allocated_resources": {},
+    "execution_history": [
+      {
+        "timestamp": 1749475915.8231347,
+        "event": "resources_allocated",
+        "resources": {}
+      },
+      {
+        "timestamp": 1749475915.8231347,
+        "event": "status_change",
+        "old_status": "pending",
+        "new_status": "cancelled",
+        "metadata": {
+          "cancellation_reason": "Test cancellation"
+        }
+      }
+    ],
+    "metadata": {
+      "test_id": 2,
+      "description": "Test contract 2",
+      "cancellation_reason": "Test cancellation"
+    }
+  }
+]

@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CortexOS Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            color: #e0e6ed;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .header {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header h1 {
+            color: #00d4ff;
+            font-size: 2rem;
+            font-weight: 300;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .brain-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(45deg, #00d4ff, #ff6b6b);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .main-container {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 2rem;
+            padding: 2rem;
+            min-height: calc(100vh - 80px);
+        }
+
+        .sidebar {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .nav-item {
+            padding: 0.75rem 1rem;
+            margin: 0.5rem 0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .nav-item:hover {
+            background: rgba(0, 212, 255, 0.1);
+            border-color: rgba(0, 212, 255, 0.3);
+        }
+
+        .nav-item.active {
+            background: rgba(0, 212, 255, 0.2);
+            border-color: #00d4ff;
+            color: #00d4ff;
+        }
+
+        .content {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(0, 212, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 212, 255, 0.1);
+        }
+
+        .card h3 {
+            color: #00d4ff;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 0.75rem 0;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .metric:last-child {
+            border-bottom: none;
+        }
+
+        .metric-value {
+            font-weight: 600;
+            color: #4ade80;
+        }
+
+        .metric-value.warning {
+            color: #fbbf24;
+        }
+
+        .metric-value.error {
+            color: #ef4444;
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 0.5rem;
+        }
+
+        .status-running {
+            background: #4ade80;
+            box-shadow: 0 0 8px #4ade80;
+        }
+
+        .status-stopped {
+            background: #ef4444;
+            box-shadow: 0 0 8px #ef4444;
+        }
+
+        .status-warning {
+            background: #fbbf24;
+            box-shadow: 0 0 8px #fbbf24;
+        }
+
+        .component-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .component-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            padding: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .component-card:hover {
+            border-color: rgba(0, 212, 255, 0.5);
+            background: rgba(0, 212, 255, 0.05);
+        }
+
+        .component-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .component-name {
+            font-weight: 500;
+            color: #e0e6ed;
+        }
+
+        .health-bar {
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            overflow: hidden;
+            margin: 0.5rem 0;
+        }
+
+        .health-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ef4444, #fbbf24, #4ade80);
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+
+        .btn {
+            background: rgba(0, 212, 255, 0.2);
+            border: 1px solid #00d4ff;
+            color: #00d4ff;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .btn:hover {
+            background: rgba(0, 212, 255, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .btn-small {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.8rem;
+        }
+
+        .btn-success {
+            background: rgba(74, 222, 128, 0.2);
+            border-color: #4ade80;
+            color: #4ade80;
+        }
+
+        .btn-warning {
+            background: rgba(251, 191, 36, 0.2);
+            border-color: #fbbf24;
+            color: #fbbf24;
+        }
+
+        .btn-danger {
+            background: rgba(239, 68, 68, 0.2);
+            border-color: #ef4444;
+            color: #ef4444;
+        }
+
+        .chart-container {
+            height: 200px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 1rem;
+        }
+
+        .activity-item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem;
+            margin: 0.5rem 0;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 6px;
+            border-left: 3px solid #00d4ff;
+        }
+
+        .activity-time {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-left: auto;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(0, 212, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #00d4ff;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .phase-section {
+            margin-bottom: 2rem;
+        }
+
+        .phase-header {
+            background: rgba(0, 212, 255, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border-left: 4px solid #00d4ff;
+        }
+
+        .phase-title {
+            color: #00d4ff;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .phase-description {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            margin-top: 0.25rem;
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .sidebar {
+                position: static;
+                order: 2;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .component-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>
+            <div class="brain-icon">🧠</div>
+            CortexOS Dashboard
+        </h1>
+    </header>
+
+    <div class="main-container">
+        <nav class="sidebar">
+            <div class="nav-item active" onclick="showSection('dashboard')">
+                📊 Dashboard
+            </div>
+            <div class="nav-item" onclick="showSection('components')">
+                🔧 Components
+            </div>
+            <div class="nav-item" onclick="showSection('memory')">
+                🧠 Memory System
+            </div>
+            <div class="nav-item" onclick="showSection('neural')">
+                ⚡ Neural Optimization
+            </div>
+            <div class="nav-item" onclick="showSection('analytics')">
+                📈 Analytics
+            </div>
+            <div class="nav-item" onclick="showSection('config')">
+                ⚙️ Configuration
+            </div>
+        </nav>
+
+        <main class="content">
+            <!-- Dashboard Section -->
+            <div id="dashboard-section" class="section">
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <h3>System Overview</h3>
+                        <div class="metric">
+                            <span>System State</span>
+                            <span class="metric-value" id="system-state">Loading...</span>
+                        </div>
+                        <div class="metric">
+                            <span>Overall Health</span>
+                            <span class="metric-value" id="overall-health">Loading...</span>
+                        </div>
+                        <div class="metric">
+                            <span>Running Components</span>
+                            <span class="metric-value" id="running-components">Loading...</span>
+                        </div>
+                        <div class="metric">
+                            <span>Uptime</span>
+                            <span class="metric-value" id="system-uptime">Loading...</span>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>Performance Metrics</h3>
+                        <div class="metric">
+                            <span>CPU Usage</span>
+                            <span class="metric-value" id="cpu-usage">Loading...</span>
+                        </div>
+                        <div class="metric">
+                            <span>Memory Usage</span>
+                            <span class="metric-value" id="memory-usage">Loading...</span>
+                        </div>
+                        <div class="metric">
+                            <span>Throughput</span>
+                            <span class="metric-value" id="throughput">Loading...</span>
+                        </div>
+                        <div class="metric">
+                            <span>Latency</span>
+                            <span class="metric-value" id="latency">Loading...</span>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>Recent Activity</h3>
+                        <div id="recent-activities">
+                            <div class="loading"></div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>System Health</h3>
+                        <div class="chart-container">
+                            Real-time health monitoring chart
+                            <br><small>(Chart visualization would be implemented here)</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Components Section -->
+            <div id="components-section" class="section hidden">
+                <div id="components-container">
+                    <div class="loading"></div>
+                </div>
+            </div>
+
+            <!-- Memory Section -->
+            <div id="memory-section" class="section hidden">
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <h3>Memory Statistics</h3>
+                        <div id="memory-stats">
+                            <div class="loading"></div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>Memory Search</h3>
+                        <input type="text" id="memory-search-input" placeholder="Search memories..." 
+                               style="width: 100%; padding: 0.5rem; margin-bottom: 1rem; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; color: white;">
+                        <button class="btn" onclick="searchMemory()">Search</button>
+                        <div id="memory-search-results" style="margin-top: 1rem;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Neural Section -->
+            <div id="neural-section" class="section hidden">
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <h3>Neural Performance</h3>
+                        <div id="neural-performance">
+                            <div class="loading"></div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>Request Optimization</h3>
+                        <select id="optimization-method" style="width: 100%; padding: 0.5rem; margin-bottom: 1rem; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; color: white;">
+                            <option value="evolutionary">Evolutionary</option>
+                            <option value="bayesian">Bayesian</option>
+                            <option value="gradient_descent">Gradient Descent</option>
+                            <option value="reinforcement_learning">Reinforcement Learning</option>
+                        </select>
+                        <button class="btn" onclick="requestOptimization()">Start Optimization</button>
+                        <div id="optimization-status" style="margin-top: 1rem;"></div>
+                    </div>
+
+                    <div class="card">
+                        <h3>Optimization History</h3>
+                        <div id="optimization-history">
+                            <div class="loading"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analytics Section -->
+            <div id="analytics-section" class="section hidden">
+                <div class="card">
+                    <h3>Performance Analytics</h3>
+                    <div class="chart-container">
+                        Performance trends chart
+                        <br><small>(Time series charts would be implemented here)</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Configuration Section -->
+            <div id="config-section" class="section hidden">
+                <div class="card">
+                    <h3>System Configuration</h3>
+                    <div id="system-config">
+                        <div class="loading"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Global state
+        let currentSection = 'dashboard';
+        let updateInterval;
+
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            startRealTimeUpdates();
+            loadDashboardData();
+        });
+
+        // Navigation
+        function showSection(sectionName) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.add('hidden');
+            });
+
+            // Show selected section
+            document.getElementById(sectionName + '-section').classList.remove('hidden');
+
+            // Update navigation
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            currentSection = sectionName;
+
+            // Load section-specific data
+            switch(sectionName) {
+                case 'components':
+                    loadComponents();
+                    break;
+                case 'memory':
+                    loadMemoryStats();
+                    break;
+                case 'neural':
+                    loadNeuralPerformance();
+                    loadOptimizationHistory();
+                    break;
+                case 'config':
+                    loadSystemConfig();
+                    break;
+            }
+        }
+
+        // Real-time updates
+        function startRealTimeUpdates() {
+            updateInterval = setInterval(() => {
+                if (currentSection === 'dashboard') {
+                    loadDashboardData();
+                }
+            }, 5000); // Update every 5 seconds
+        }
+
+        // API calls
+        async function apiCall(endpoint, options = {}) {
+            try {
+                const response = await fetch(`/api${endpoint}`, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        ...options.headers
+                    },
+                    ...options
+                });
+                return await response.json();
+            } catch (error) {
+                console.error('API call failed:', error);
+                return null;
+            }
+        }
+
+        // Dashboard data loading
+        async function loadDashboardData() {
+            const status = await apiCall('/status');
+            const metrics = await apiCall('/realtime/metrics');
+            const activities = await apiCall('/realtime/activities');
+
+            if (status) {
+                document.getElementById('system-state').textContent = status.system_state;
+                document.getElementById('overall-health').textContent = (status.overall_health * 100).toFixed(1) + '%';
+                document.getElementById('running-components').textContent = `${status.running_components}/${status.total_components}`;
+                document.getElementById('system-uptime').textContent = formatUptime(status.uptime_seconds);
+            }
+
+            if (metrics) {
+                document.getElementById('cpu-usage').textContent = metrics.total_cpu_usage.toFixed(1) + '%';
+                document.getElementById('memory-usage').textContent = metrics.total_memory_usage.toFixed(1) + ' GB';
+                document.getElementById('throughput').textContent = metrics.throughput.toFixed(0) + ' ops/s';
+                document.getElementById('latency').textContent = metrics.latency.toFixed(1) + ' ms';
+            }
+
+            if (activities) {
+                const activitiesHtml = activities.map(activity => `
+                    <div class="activity-item">
+                        <span>${activity.message}</span>
+                        <span class="activity-time">${formatTime(activity.time)}</span>
+                    </div>
+                `).join('');
+                document.getElementById('recent-activities').innerHTML = activitiesHtml;
+            }
+        }
+
+        // Components loading
+        async function loadComponents() {
+            const components = await apiCall('/components');
+            
+            if (components) {
+                const container = document.getElementById('components-container');
+                let html = '';
+
+                const phaseDescriptions = {
+                    'infrastructure': 'Core infrastructure components providing foundational services',
+                    'phase1': 'Primary neural processing engines and context understanding',
+                    'phase2': 'Resonance detection and pattern recognition systems',
+                    'phase3': 'Memory management and cognitive bridging components',
+                    'phase4': 'Data ingestion pipeline for real-time and batch processing',
+                    'phase5': 'System monitoring, health checking, and alerting services',
+                    'phase6': 'Cognitive enhancement and adaptive control systems'
+                };
+
+                for (const [phase, componentList] of Object.entries(components)) {
+                    html += `
+                        <div class="phase-section">
+                            <div class="phase-header">
+                                <div class="phase-title">${phase.toUpperCase()}</div>
+                                <div class="phase-description">${phaseDescriptions[phase] || ''}</div>
+                            </div>
+                            <div class="component-grid">
+                    `;
+
+                    for (const [componentName, componentData] of Object.entries(componentList)) {
+                        const statusClass = componentData.status === 'running' ? 'status-running' : 'status-stopped';
+                        const healthPercent = (componentData.health_score * 100).toFixed(0);
+                        
+                        html += `
+                            <div class="component-card">
+                                <div class="component-header">
+                                    <div class="component-name">
+                                        <span class="status-indicator ${statusClass}"></span>
+                                        ${componentName.replace('_', ' ')}
+                                    </div>
+                                    <span class="metric-value">${healthPercent}%</span>
+                                </div>
+                                <div class="health-bar">
+                                    <div class="health-fill" style="width: ${healthPercent}%"></div>
+                                </div>
+                                <div class="metric">
+                                    <span>CPU</span>
+                                    <span>${componentData.cpu_usage}%</span>
+                                </div>
+                                <div class="metric">
+                                    <span>Memory</span>
+                                    <span>${componentData.memory_usage}MB</span>
+                                </div>
+                                <div style="margin-top: 1rem; display: flex; gap: 0.5rem;">
+                                    <button class="btn btn-small btn-success" onclick="controlComponent('${phase}', '${componentName}', 'start')">Start</button>
+                                    <button class="btn btn-small btn-warning" onclick="controlComponent('${phase}', '${componentName}', 'restart')">Restart</button>
+                                    <button class="btn btn-small btn-danger" onclick="controlComponent('${phase}', '${componentName}', 'stop')">Stop</button>
+                                </div>
+                            </div>
+                        `;
+                    }
+
+                    html += `
+                            </div>
+                        </div>
+                    `;
+                }
+
+                container.innerHTML = html;
+            }
+        }
+
+        // Component control
+        async function controlComponent(phase, component, action) {
+            const result = await apiCall(`/components/${phase}/${component}/${action}`, {
+                method: 'POST'
+            });
+
+            if (result) {
+                alert(result.message);
+                if (result.success) {
+                    loadComponents(); // Refresh components
+                }
+            }
+        }
+
+        // Memory functions
+        async function loadMemoryStats() {
+            const stats = await apiCall('/memory/stats');
+            
+            if (stats) {
+                const html = `
+                    <div class="metric">
+                        <span>Total Memories</span>
+                        <span class="metric-value">${stats.total_memories.toLocaleString()}</span>
+                    </div>
+                    <div class="metric">
+                        <span>Active Memories</span>
+                        <span class="metric-value">${stats.active_memories.toLocaleString()}</span>
+                    </div>
+                    <div class="metric">
+                        <span>Cache Hit Rate</span>
+                        <span class="metric-value">${(stats.cache_hit_rate * 100).toFixed(1)}%</span>
+                    </div>
+                    <div class="metric">
+                        <span>Memory Usage</span>
+                        <span class="metric-value">${(stats.memory_usage_mb / 1024).toFixed(1)} GB</span>
+                    </div>
+                    <div class="metric">
+                        <span>Avg Retrieval Time</span>
+                        <span class="metric-value">${stats.retrieval_performance.avg_retrieval_time} ms</span>
+                    </div>
+                `;
+                document.getElementById('memory-stats').innerHTML = html;
+            }
+        }
+
+        async function searchMemory() {
+            const query = document.getElementById('memory-search-input').value;
+            if (!query) return;
+
+            const results = await apiCall('/memory/search', {
+                method: 'POST',
+                body: JSON.stringify({ query })
+            });
+
+            if (results) {
+                const html = results.results.map(result => `
+                    <div class="activity-item">
+                        <div>
+                            <strong>${result.content}</strong><br>
+                            <small>Relevance: ${(result.relevance_score * 100).toFixed(0)}% | Accessed: ${result.access_count} times</small>
+                        </div>
+                    </div>
+                `).join('');
+                
+                document.getElementById('memory-search-results').innerHTML = `
+                    <h4>Found ${results.total_found} results (${results.search_time_ms}ms)</h4>
+                    ${html}
+                `;
+            }
+        }
+
+        // Neural functions
+        async function loadNeuralPerformance() {
+            const performance = await apiCall('/neural/performance');
+            
+            if (performance) {
+                const html = `
+                    <div class="metric">
+                        <span>Throughput</span>
+                        <span class="metric-value">${performance.throughput} ops/s</span>
+                    </div>
+                    <div class="metric">
+                        <span>Latency</span>
+                        <span class="metric-value">${performance.latency} ms</span>
+                    </div>
+                    <div class="metric">
+                        <span>Accuracy</span>
+                        <span class="metric-value">${(performance.accuracy * 100).toFixed(1)}%</span>
+                    </div>
+                    <div class="metric">
+                        <span>Efficiency</span>
+                        <span class="metric-value">${(performance.efficiency * 100).toFixed(1)}%</span>
+                    </div>
+                    <div class="metric">
+                        <span>Active Optimizations</span>
+                        <span class="metric-value">${performance.active_optimizations}</span>
+                    </div>
+                `;
+                document.getElementById('neural-performance').innerHTML = html;
+            }
+        }
+
+        async function loadOptimizationHistory() {
+            const history = await apiCall('/neural/optimization/history');
+            
+            if (history) {
+                const html = history.map(opt => `
+                    <div class="activity-item">
+                        <div>
+                            <strong>${opt.method}</strong> - ${opt.status}<br>
+                            <small>Targets: ${opt.targets.join(', ')} | Duration: ${opt.duration}s</small>
+                        </div>
+                        <span class="activity-time">${formatTime(opt.timestamp)}</span>
+                    </div>
+                `).join('');
+                
+                document.getElementById('optimization-history').innerHTML = html;
+            }
+        }
+
+        async function requestOptimization() {
+            const method = document.getElementById('optimization-method').value;
+            
+            const result = await apiCall('/neural/optimization/request', {
+                method: 'POST',
+                body: JSON.stringify({
+                    method: method,
+                    targets: ['throughput', 'accuracy']
+                })
+            });
+
+            if (result) {
+                document.getElementById('optimization-status').innerHTML = `
+                    <div class="activity-item">
+                        <span>${result.message}</span>
+                        <span>ID: ${result.optimization_id}</span>
+                    </div>
+                `;
+                
+                setTimeout(() => {
+                    loadOptimizationHistory();
+                }, 2000);
+            }
+        }
+
+        // Configuration
+        async function loadSystemConfig() {
+            const config = await apiCall('/config');
+            
+            if (config) {
+                const html = Object.entries(config).map(([section, settings]) => `
+                    <div style="margin-bottom: 1.5rem;">
+                        <h4 style="color: #00d4ff; margin-bottom: 0.5rem;">${section.toUpperCase()}</h4>
+                        ${Object.entries(settings).map(([key, value]) => `
+                            <div class="metric">
+                                <span>${key.replace('_', ' ')}</span>
+                                <span class="metric-value">${typeof value === 'object' ? JSON.stringify(value) : value}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                `).join('');
+                
+                document.getElementById('system-config').innerHTML = html;
+            }
+        }
+
+        // Utility functions
+        function formatUptime(seconds) {
+            const days = Math.floor(seconds / 86400);
+            const hours = Math.floor((seconds % 86400) / 3600);
+            const minutes = Math.floor((seconds % 3600) / 60);
+            return `${days}d ${hours}h ${minutes}m`;
+        }
+
+        function formatTime(timestamp) {
+            return new Date(timestamp).toLocaleTimeString();
+        }
+    </script>
+</body>
+</html>
+

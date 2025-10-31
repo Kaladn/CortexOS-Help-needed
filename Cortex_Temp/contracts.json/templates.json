@@ -1,0 +1,25 @@
+{
+  "standard_processing": {
+    "service_type": "neural_processing",
+    "resource_requirements": [
+      {
+        "resource_type": "cube",
+        "quantity": 3,
+        "duration": 1800.0,
+        "constraints": {}
+      },
+      {
+        "resource_type": "neural_processor",
+        "quantity": 1,
+        "duration": 1800.0,
+        "constraints": {}
+      }
+    ],
+    "sla_requirements": {
+      "max_latency": 1.0,
+      "min_throughput": 5.0,
+      "max_error_rate": 0.01,
+      "availability": 0.99,
+      "response_time": 0.2
+    },
+    "priority": 
