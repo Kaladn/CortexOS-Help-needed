@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2025 Kaladn
+Copyright (c) 2025 CortexOS Contributors
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,3 +19,21 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+---
+
+DISCLAIMER:
+
+This code is experimental research software that never achieved stable
+production deployment. It is provided "as-is" for educational and research
+purposes only. The original implementation encountered significant deployment
+challenges and integration issues.
+
+Users should approach this codebase with realistic expectations. While
+individual components may function correctly in isolation, the integrated
+system has known issues with cross-platform compatibility, deployment
+stability, and end-to-end functionality.
+
+The authors and contributors make no guarantees about the functionality,
+reliability, or suitability of this software for any particular purpose.
+Use at your own risk.

@@ -1,0 +1,147 @@
+version: '3.8'
+
+services:
+  cortexos:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cortexos_main
+    image: cortexos:latest
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+    environment:
+      - CORTEXOS_ROOT=/app
+      - DATA_DIR=/app/data
+      - LOGS_DIR=/app/logs
+      - CONFIG_DIR=/app/config
+      - TEMP_DIR=/app/temp
+      - CACHE_DIR=/app/cache
+      - NEURAL_DATA_DIR=/app/neural_data
+      - CUBE_STORAGE_PATH=/app/storage/cube_storage
+      - CONTRACT_STORAGE_PATH=/app/storage/contracts
+      - LOG_LEVEL=INFO
+      - PYTHONUNBUFFERED=1
+    volumes:
+      # Persist data directories
+      - cortexos_data:/app/data
+      - cortexos_logs:/app/logs
+      - cortexos_config:/app/config
+      - cortexos_neural:/app/neural_data
+      - cortexos_storage:/app/storage
+      - cortexos_backups:/app/backups
+      - cortexos_metrics:/app/metrics
+      - cortexos_analytics:/app/analytics
+      - cortexos_reports:/app/reports
+    networks:
+      - cortexos_network
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import sys; sys.exit(0)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    deploy:
+      resources:
+        limits:
+          cpus: '4.0'
+          memory: 8G
+        reservations:
+          cpus: '2.0'
+          memory: 4G
+
+  # Optional: Redis for caching and message queue
+  redis:
+    image: redis:7-alpine
+    container_name: cortexos_redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - cortexos_redis:/data
+    networks:
+      - cortexos_network
+    command: redis-server --appendonly yes
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Optional: MongoDB for document storage
+  mongodb:
+    image: mongo:7
+    container_name: cortexos_mongodb
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=cortexos
+      - MONGO_INITDB_ROOT_PASSWORD=cortexos_secure_password
+      - MONGO_INITDB_DATABASE=cortexos
+    volumes:
+      - cortexos_mongodb:/data/db
+      - cortexos_mongodb_config:/data/configdb
+    networks:
+      - cortexos_network
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Optional: Dashboard/Web UI
+  dashboard:
+    build:
+      context: ./cortexos_dashboard
+      dockerfile: Dockerfile
+    container_name: cortexos_dashboard
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - CORTEXOS_API_URL=http://cortexos:8080
+      - NODE_ENV=production
+    depends_on:
+      - cortexos
+    networks:
+      - cortexos_network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+volumes:
+  cortexos_data:
+    driver: local
+  cortexos_logs:
+    driver: local
+  cortexos_config:
+    driver: local
+  cortexos_neural:
+    driver: local
+  cortexos_storage:
+    driver: local
+  cortexos_backups:
+    driver: local
+  cortexos_metrics:
+    driver: local
+  cortexos_analytics:
+    driver: local
+  cortexos_reports:
+    driver: local
+  cortexos_redis:
+    driver: local
+  cortexos_mongodb:
+    driver: local
+  cortexos_mongodb_config:
+    driver: local
+
+networks:
+  cortexos_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.0.0/16

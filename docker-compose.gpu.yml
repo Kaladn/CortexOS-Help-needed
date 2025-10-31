@@ -1,0 +1,229 @@
+version: '3.8'
+
+services:
+  cortexos-gpu:
+    build:
+      context: .
+      dockerfile: Dockerfile.gpu
+    container_name: cortexos_gpu_main
+    image: cortexos:gpu-latest
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+    environment:
+      - CORTEXOS_ROOT=/app
+      - DATA_DIR=/app/data
+      - LOGS_DIR=/app/logs
+      - CONFIG_DIR=/app/config
+      - TEMP_DIR=/app/temp
+      - CACHE_DIR=/app/cache
+      - NEURAL_DATA_DIR=/app/neural_data
+      - CUBE_STORAGE_PATH=/app/storage/cube_storage
+      - CONTRACT_STORAGE_PATH=/app/storage/contracts
+      - LOG_LEVEL=INFO
+      - PYTHONUNBUFFERED=1
+      # GPU Configuration
+      - ENABLE_GPU=true
+      - CUDA_VISIBLE_DEVICES=0
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=compute,utility
+      - TORCH_CUDA_ARCH_LIST=7.0;7.5;8.0;8.6;8.9;9.0
+      - GPU_MEMORY_FRACTION=0.8
+      - MIXED_PRECISION=true
+      - TENSOR_CORES_ENABLED=true
+    volumes:
+      # Persist data directories
+      - cortexos_data:/app/data
+      - cortexos_logs:/app/logs
+      - cortexos_config:/app/config
+      - cortexos_neural:/app/neural_data
+      - cortexos_storage:/app/storage
+      - cortexos_backups:/app/backups
+      - cortexos_metrics:/app/metrics
+      - cortexos_analytics:/app/analytics
+      - cortexos_reports:/app/reports
+      - cortexos_models:/app/models
+      - cortexos_gpu_cache:/app/gpu_cache
+    networks:
+      - cortexos_network
+    deploy:
+      resources:
+        limits:
+          cpus: '8.0'
+          memory: 32G
+        reservations:
+          cpus: '4.0'
+          memory: 16G
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    runtime: nvidia
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import torch; assert torch.cuda.is_available(); exit(0)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+  # Redis for caching and message queue
+  redis:
+    image: redis:7-alpine
+    container_name: cortexos_redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - cortexos_redis:/data
+    networks:
+      - cortexos_network
+    command: redis-server --appendonly yes --maxmemory 4gb --maxmemory-policy allkeys-lru
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # MongoDB for document storage
+  mongodb:
+    image: mongo:7
+    container_name: cortexos_mongodb
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=cortexos
+      - MONGO_INITDB_ROOT_PASSWORD=cortexos_secure_password
+      - MONGO_INITDB_DATABASE=cortexos
+    volumes:
+      - cortexos_mongodb:/data/db
+      - cortexos_mongodb_config:/data/configdb
+    networks:
+      - cortexos_network
+    command: mongod --wiredTigerCacheSizeGB 4
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Vector database for embeddings (using Qdrant)
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: cortexos_qdrant
+    restart: unless-stopped
+    ports:
+      - "6333:6333"
+      - "6334:6334"
+    volumes:
+      - cortexos_qdrant:/qdrant/storage
+    networks:
+      - cortexos_network
+    environment:
+      - QDRANT__SERVICE__GRPC_PORT=6334
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:6333/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Prometheus for metrics
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: cortexos_prometheus
+    restart: unless-stopped
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+      - cortexos_prometheus:/prometheus
+    networks:
+      - cortexos_network
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      - '--web.console.templates=/usr/share/prometheus/consoles'
+
+  # Grafana for visualization
+  grafana:
+    image: grafana/grafana:latest
+    container_name: cortexos_grafana
+    restart: unless-stopped
+    ports:
+      - "3001:3000"
+    volumes:
+      - cortexos_grafana:/var/lib/grafana
+      - ./monitoring/grafana-dashboards:/etc/grafana/provisioning/dashboards
+    networks:
+      - cortexos_network
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=cortexos_admin
+      - GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-simple-json-datasource
+    depends_on:
+      - prometheus
+
+  # NVIDIA GPU monitoring
+  dcgm-exporter:
+    image: nvcr.io/nvidia/k8s/dcgm-exporter:3.3.0-3.2.0-ubuntu22.04
+    container_name: cortexos_dcgm_exporter
+    restart: unless-stopped
+    ports:
+      - "9400:9400"
+    networks:
+      - cortexos_network
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=compute,utility
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+
+volumes:
+  cortexos_data:
+    driver: local
+  cortexos_logs:
+    driver: local
+  cortexos_config:
+    driver: local
+  cortexos_neural:
+    driver: local
+  cortexos_storage:
+    driver: local
+  cortexos_backups:
+    driver: local
+  cortexos_metrics:
+    driver: local
+  cortexos_analytics:
+    driver: local
+  cortexos_reports:
+    driver: local
+  cortexos_models:
+    driver: local
+  cortexos_gpu_cache:
+    driver: local
+  cortexos_redis:
+    driver: local
+  cortexos_mongodb:
+    driver: local
+  cortexos_mongodb_config:
+    driver: local
+  cortexos_qdrant:
+    driver: local
+  cortexos_prometheus:
+    driver: local
+  cortexos_grafana:
+    driver: local
+
+networks:
+  cortexos_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.0.0/16
